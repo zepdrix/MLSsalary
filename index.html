@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src="dimple.js"></script>
+  <script src="lib/dimple.js"></script>
 
   <style media="screen">
 
@@ -21,18 +21,17 @@
     }
 
     svg {
-      padding-bottom: 50px;
+      padding-bottom: 100px;
     }
 
     .one {
-      position: fixed;
-      top: 137px;
+      position: relative;
       left: 0px;
     }
 
     .two {
-      position: fixed;
-      left: 950px;
+      position: relative;
+      left: 50px;
     }
 
   </style>
@@ -102,39 +101,39 @@
         };
       </script>
   </head>
-<body>
-  <h2>MLS Compensation by Team (5/1/2013)</h2>
+  <body>
+    <h2>MLS Compensation by Team (5/1/2013)</h2>
 
-  <form>
-    <b>Select an MLS Team:</b>
-    <p>
-    <select onchange="toggleClub(this.value)">
-      <option VALUE="All">All Clubs</option>
-      <option VALUE="CHI">Chicago Fire</option>
-      <option VALUE="CLB">Columbus Crew SC</option>
-      <option VALUE="DC">DC United</option>
-      <option VALUE="MTL">Montreal Impact</option>
-      <option VALUE="NE">New England Revolution</option>
-      <option VALUE="NY">New York Red Bulls</option>
-      <option VALUE="PHI">Philadelphia Union</option>
-      <option VALUE="TOR">Toronto FC</option>
-      <option VALUE="CHV">Chivas USA</option>
-      <option VALUE="COL">Colorado Rapids</option>
-      <option VALUE="DAL">FC Dallas</option>
-      <option VALUE="HOU">Houston Dynamo</option>
-      <option VALUE="LA">LA Galaxy</option>
-      <option VALUE="POR">Portland Timbers</option>
-      <option VALUE="RSL">Real Salt Lake</option>
-      <option VALUE="SJ">San Jose Earthquakes</option>
-      <option VALUE="SEA">Seattle Sounders</option>
-      <option VALUE="KA">Sporting Kansas City</option>
-      <option VALUE="VAN">Vancouver Whitecaps FC</option>
-    </select>
-    <P>
-  </form>
+    <form>
+      <b>Select an MLS Team:</b>
+      <p>
+      <select onchange="toggleClub(this.value)">
+        <option VALUE="All">All Clubs</option>
+        <option VALUE="CHI">Chicago Fire</option>
+        <option VALUE="CLB">Columbus Crew SC</option>
+        <option VALUE="DC">DC United</option>
+        <option VALUE="MTL">Montreal Impact</option>
+        <option VALUE="NE">New England Revolution</option>
+        <option VALUE="NY">New York Red Bulls</option>
+        <option VALUE="PHI">Philadelphia Union</option>
+        <option VALUE="TOR">Toronto FC</option>
+        <option VALUE="CHV">Chivas USA</option>
+        <option VALUE="COL">Colorado Rapids</option>
+        <option VALUE="DAL">FC Dallas</option>
+        <option VALUE="HOU">Houston Dynamo</option>
+        <option VALUE="LA">LA Galaxy</option>
+        <option VALUE="POR">Portland Timbers</option>
+        <option VALUE="RSL">Real Salt Lake</option>
+        <option VALUE="SJ">San Jose Earthquakes</option>
+        <option VALUE="SEA">Seattle Sounders</option>
+        <option VALUE="KA">Sporting Kansas City</option>
+        <option VALUE="VAN">Vancouver Whitecaps FC</option>
+      </select>
+      <P>
+    </form>
 
-  <script type="text/javascript">
-    d3.csv("mls2013salary.csv",row , draw);
-  </script>
-</body>
+    <script type="text/javascript">
+      d3.csv("lib/mls2013salary.csv",row , draw);
+    </script>
+  </body>
 </html>
