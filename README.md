@@ -8,12 +8,12 @@ The charts were created with dimple.js and d3.js.
 
 ## All Clubs
 ---
-Selecting all clubs shows the total compensation for each club in the MLS in a bar graph.
+Selecting all clubs shows the total compensation for each club in the MLS in a bar graph. We can see that the LA Galaxy and the New York Red Bulls stand for above the rest of the league in terms of total compensation
 
 <img src="img/all_clubs.png" width="600">
 
 ## Individual Club
 ---
-Selecting an individual club shows the compensation for each player in a bar graph as well as a graph of how each player's compensation compares to the club's total compensation.
+Selecting an individual club shows the compensation for each player in a bar graph as well as a graph of how each player's compensation compares to the club's total compensation. We can see that a lot of clubs, including the Columbus Crew, have a few 'superstar' players with high compensation and many players with lower compensation.
 
-<img src="img/columbus_crew.png" width="600">
+<img src="img/columbus_crew.png" width="720">
