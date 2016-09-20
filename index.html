@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+
+  <style media="screen">
+
+    circle.dimple-series-1 {
+      fill: red;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      margin-left: 75px;
+      z-index: 999;
+    }
+
+    .one {
+      position: fixed;
+      top: 137px;
+      left: 0px;
+    }
+
+    .two {
+      position: fixed;
+      left: 1300px;
+    }
+
+
+  </style>
+    <script type="text/javascript">
+      club = 'All';
+
+      function row(d, i) {
+        if (club === 'All') {
+          return d;
+        } else if (d.Club === club) {
+          return d;
+        }
+      };
+
+
+      function toggleClub(newClub) {
+        club = newClub;
+
+        d3.selectAll('svg').remove();
+
+        d3.csv("mls2013salary.csv",row , draw);
+
+      };
+
+
+      function draw(data) {
+          // "use strict";
+          var margin = 75,
+              width = 1200 - margin,
+              height = 800 - margin;
+
+
+          var svg = d3.select("body")
+            .append("svg")
+              .attr("width", width + margin + 200)
+              .attr("height", height + margin)
+              .classed('one', true)
+            .append('g');
+
+          if (club === 'All') {
+            var myChart = new dimple.chart(svg, data);
+            var x = myChart.addCategoryAxis("x", "Club");
+            x.addOrderRule("Compensation", false);
+
+            myChart.addMeasureAxis("y", "Compensation");
+            myChart.addSeries(null, dimple.plot.bar);
+            myChart.draw();
+          } else {
+
+            svg.attr('width', width + margin - 800);
+
+            var svg2 = d3.select("body")
+              .append("svg")
+                .attr("width", 200)
+                .attr("height", height + margin)
+                .classed('two', true)
+              .append('g');
+
+            var filteredData = dimple.filterData(data, "Club", club);
+            var clubChart = new dimple.chart(svg, filteredData);
+            var x = clubChart.addCategoryAxis("x", "Last Name");
+            var y = clubChart.addMeasureAxis("y", "Compensation");
+            x.addOrderRule("Compensation", false);
+            clubChart.addSeries(null, dimple.plot.bar);
+
+            var myChart = new dimple.chart(svg2, data);
+            var x = myChart.addCategoryAxis("x", "Club");
+
+            myChart.addMeasureAxis("y", "Compensation");
+            myChart.addSeries("Last Name", dimple.plot.bar);
+            myChart.width = 80;
+            myChart.x = 50;
+            myChart.draw();
+            clubChart.draw();
+
+          }
+
+        };
+      </script>
+  </head>
+<body>
+  <h2>MLS Compensation by Team (5/1/2013)</h2>
+  <FORM>
+
+<B>Select an MLS Team:</B><P>
+
+  <select onchange="toggleClub(this.value)">
+    <option VALUE="All">All Clubs</option>
+    <option VALUE="CHI">Chicago Fire</option>
+    <option VALUE="CLB">Columbus Crew SC</option>
+    <option VALUE="DC">DC United</option>
+    <option VALUE="MTL">Montreal Impact</option>
+    <option VALUE="NE">New England Revolution</option>
+    <option VALUE="NY">New York Red Bulls</option>
+    <option VALUE="PHI">Philadelphia Union</option>
+    <option VALUE="TOR">Toronto FC</option>
+    <option VALUE="CHV">Chivas USA</option>
+    <option VALUE="COL">Colorado Rapids</option>
+    <option VALUE="DAL">FC Dallas</option>
+    <option VALUE="HOU">Houston Dynamo</option>
+    <option VALUE="LA">LA Galaxy</option>
+    <option VALUE="POR">Portland Timbers</option>
+    <option VALUE="RSL">Real Salt Lake</option>
+    <option VALUE="SJ">San Jose Earthquakes</option>
+    <option VALUE="SEA">Seattle Sounders</option>
+    <option VALUE="KA">Sporting Kansas City</option>
+    <option VALUE="VAN">Vancouver Whitecaps FC</option>
+  </select>
+
+  <P>
+</FORM>
+
+  <script type="text/javascript">
+  /*
+    Use D3 (not dimple.js) to load the TSV file
+    and pass the contents of it to the draw function
+    */
+  d3.csv("mls2013salary.csv",row , draw);
+  </script>
+</body>
+</html>
